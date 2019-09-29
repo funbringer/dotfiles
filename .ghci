@@ -1,0 +1,18 @@
+:set prompt      "\n\ESC[01;32mλ>\ESC[m "
+:set prompt-cont " \ESC[01;32m|\ESC[m "
+
+:set +m
+
+:set -XOverloadedStrings
+
+:set -XBlockArguments
+:set -XLambdaCase
+:set -XTypeApplications
+
+:set -XDeriveFoldable
+:set -XDeriveFunctor
+:set -XDeriveTraversable
+:set -XStandaloneDeriving
+
+:set -XTemplateHaskell
+:set -XQuasiQuotes

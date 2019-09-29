@@ -1,0 +1,64 @@
+-- for debug purposes
+\set pid 'SELECT pg_backend_pid();'
+\set gdb 'SELECT pg_backend_pid() \\g |pg_debug'
+
+-- for beautiful prompt
+select (
+	with
+	preferred_settings as (
+		select * from (
+			values
+				/*
+				 * Put your lines here.
+				 *   format: (position, name, format_string, default_value)
+				 *   format_string:
+				 *     empty string: show only value
+				 *     single char:  show value prepended by char, e.g. '#1'
+				 *     otherwise:    show name-value pair, e.g. 'port=5432'
+				 *   default_value: hide setting if value = default_value
+				 */
+				(1, 'master_or_replica', '', 'M'),
+				(2, 'port', 'port', '5432'),
+				(3, 'shardman.my_id', '@', NULL),
+				(4, 'multimaster.node_id', '@', NULL)
+		) as v(id, name, short_name, default_value)
+	),
+	settings as (
+		/* global settings */
+		select name, setting from pg_catalog.pg_settings
+		union
+		/* put your custom setting providers here */
+		select
+			'master_or_replica' as name,
+			case
+				when pg_is_in_recovery() then 'R'
+				else 'M'
+				end as setting
+	),
+	config as (
+		select
+			id,
+			case
+				when short_name = '' then
+					setting
+				when char_length(short_name) = 1 then
+					short_name || setting
+				when short_name is null then
+					name || '=' || setting
+				else
+					short_name || '=' || setting
+			end as kvp
+		from settings join preferred_settings using(name)
+		where
+			preferred_settings.default_value is null OR
+			preferred_settings.default_value != setting
+	)
+	select '[' || string_agg(kvp, ', ' order by id) || ']' from config
+) as prompt_hints
+\gset
+
+-- prompt itself
+\set PROMPT1 '%/%:prompt_hints:=# '
+
+-- it's nice to see execution time
+\timing on
