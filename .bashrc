@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+# ^ shebang is for shellcheck
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -126,22 +129,8 @@ man() {
             man "$@"
 }
 
-# Show disk usage per directory
-dusg() {
-    du -h -d1 "$@" | sort -h
-}
-
-# Check PostgreSQL extension using Norsu
-pgxs() {
-    if ! command -v norsu > /dev/null; then
-        pip install --user norsu
-    fi
-    echo "PG: $1"
-    norsu pgxs "$@" -- clean install -j4 && norsu pgxs "$@" -R -- installcheck
-}
-
-# Clean all docker images & containers
-docker-clean-all() {
-    docker rm "$(docker ps -aq)"
-    docker image rm "$(docker images -q)"
-}
+# Work items (not to be sync'ed)
+WORK_BASHRC="$HOME/.config/work.bashrc"
+if [ -f "$WORK_BASHRC" ]; then
+    source "$WORK_BASHRC"
+fi
