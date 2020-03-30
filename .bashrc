@@ -35,11 +35,13 @@ else
 fi
 
 if [ "$color_prompt" = yes ]; then
-    # select proper color (root / user)
-    if [ "$(id -u)" != "0" ]; then
-        user_host_color='\[\033[01;32m\]' # green
-    else
+    # select proper color (root / ssh / user)
+    if [ "$(id -u)" == "0" ]; then
         user_host_color='\[\033[01;31m\]' # red
+    elif [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+        user_host_color='\[\033[01;33m\]' # yellow
+    else
+        user_host_color='\[\033[01;32m\]' # green
     fi
     path_color='\[\033[01;34m\]' # blue
     reset_color='\[\033[00m\]'

@@ -23,4 +23,4 @@ pip install --ignore-installed --user   \
 
 echo "Creating symlinks"
 echo
-ln -s /usr/bin/nvim "$HOME/.local/bin/vim"
+ln -sf /usr/bin/nvim "$HOME/.local/bin/vim"
