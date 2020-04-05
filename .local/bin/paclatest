@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+
+"""
+show N latest installed packages
+usage:
+    paclatest [-N] [-d | -c]
+"""
+
+import os
+import sys
+import argparse
+from enum import Enum
+from datetime import datetime
+
+DEFAULT_NUMS = 10
+
+
+class Colors(Enum):
+    Yellow = ('', '\033[33m')
+    White = ('', '\033[37m')
+    Color1 = ('', '\033[36m')
+    Color2 = ('', '\033[35m')
+
+
+def run_expac(n, colorized, show_dates):
+    # if colorized -> show dates
+    show_dates = show_dates or colorized
+
+    with os.popen(f'expac --timefmt=%s "%l\t%n" | sort -n | tail -{n}') as s:
+        line_num = 0
+        cur_day, cur_color = None, Colors.Color1
+
+        while line := s.readline():
+            date, package = line.strip().split('\t')
+            date_srt = ''
+
+            if show_dates:
+                dt = datetime.fromtimestamp(int(date))
+                cur_day = cur_day or dt.day
+
+                if dt.day != cur_day:
+                    cur_day = dt.day
+                    cur_color = {
+                        Colors.Color1: Colors.Color2,
+                        Colors.Color2: Colors.Color1
+                    }[cur_color]
+
+                date_srt = f'{cur_color.value[colorized]}{dt}\t'
+
+            print(f'{date_srt}{Colors.Yellow.value[colorized]}{package}')
+
+            line_num += 1
+            if line_num > n:
+                return
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description='Show latest installed packages',
+        epilog='example:\n\t$ paclatest -N 10 -c'
+    )
+
+    parser.add_argument('--number', '-N', default=DEFAULT_NUMS, type=int,
+                        help='show N latest installed packages')
+    parser.add_argument('--color', '-c', action='store_true',
+                        help='colorize output')
+    parser.add_argument('--date', '-d', action='store_true',
+                        help='show installation date')
+
+    pargs = parser.parse_args(sys.argv[1:])
+    run_expac(pargs.number, colorized=pargs.color, show_dates=pargs.date)
