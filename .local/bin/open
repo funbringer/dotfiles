@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec xdg-open "$@" 2>/dev/null

@@ -1,0 +1,17 @@
+# Exclude everything
+/*
+
+!.gitignore
+
+# Various dirs
+!.config/
+!.ssh/
+!.vim/
+
+# Various harmless configs
+!/.archey3.cfg
+!/.psqlrc
+!/.ghci
+!/.gdbinit
+!/.tmux.conf
+!/.bashrc

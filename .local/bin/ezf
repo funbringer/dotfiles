@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+fzf --preview "bat --color=always --decorations=never {} | head -2000"

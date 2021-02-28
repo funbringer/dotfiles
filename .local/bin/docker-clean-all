@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Clean all docker images & containers
+docker rm "$(docker ps -aq)"
+docker image rm "$(docker images -q)"

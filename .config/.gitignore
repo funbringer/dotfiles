@@ -1,0 +1,8 @@
+# Exclude everything
+/*
+
+!.gitignore
+
+# User config
+!alacritty
+!bashrc

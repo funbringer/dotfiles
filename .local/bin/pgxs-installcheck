@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Test PostgreSQL extension using Norsu
+
+if ! command -v norsu > /dev/null; then
+    pip install --user norsu
+fi
+
+norsu pgxs "$@" -- clean install -j4 && norsu pgxs "$@" -R -- installcheck

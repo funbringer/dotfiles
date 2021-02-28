@@ -1,0 +1,53 @@
+:set prompt      "\n\ESC[01;32mλ>\ESC[m "
+:set prompt-cont " \ESC[01;32m|\ESC[m "
+
+:set +m
+
+:set -XFlexibleContexts
+:set -XFlexibleInstances
+
+:set -XBlockArguments
+:set -XLambdaCase
+:set -XPatternSynonyms
+:set -XTypeApplications
+
+:set -XDeriveFoldable
+:set -XDeriveFunctor
+:set -XDeriveGeneric
+:set -XDeriveTraversable
+:set -XStandaloneDeriving
+
+:set -XTemplateHaskell
+:set -XQuasiQuotes
+
+:set -XDataKinds
+:set -XGADTs
+:set -XMultiParamTypeClasses
+:set -XOverloadedStrings
+:set -XTypeFamilies
+:set -XTypeOperators
+
+
+-- PACKAGES --
+
+:set -package containers
+
+
+-- IMPORTS --
+
+import qualified Data.Map as Map
+import Data.Map (Map)
+
+import qualified Data.Set as Set
+import Data.Set (Set)
+
+import qualified Data.List as List
+
+import qualified Data.List.NonEmpty as NonEmpty
+import Data.List.NonEmpty (NonEmpty)
+
+import Control.Applicative
+import Control.Monad
+import Data.Functor
+import Data.Foldable
+import Data.Traversable

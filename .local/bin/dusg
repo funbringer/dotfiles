@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Show disk usage per directory
+du -h -d1 "$@" 2>/dev/null | sort -h
