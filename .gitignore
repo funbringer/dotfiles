@@ -10,8 +10,9 @@
 
 # Various harmless configs
 !/.archey3.cfg
-!/.psqlrc
-!/.ghci
-!/.gdbinit
-!/.tmux.conf
+!/.bash_profile
 !/.bashrc
+!/.gdbinit
+!/.ghci
+!/.psqlrc
+!/.tmux.conf
