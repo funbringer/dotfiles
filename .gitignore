@@ -6,7 +6,11 @@
 # Various dirs
 !.config/
 !.ssh/
-!.vim/
+
+# VIM
+!/.config/nvim
+!/.vim/
+!/.vimrc
 
 # Various harmless configs
 !/.archey3.cfg
