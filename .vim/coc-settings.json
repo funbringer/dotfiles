@@ -1,0 +1,91 @@
+{
+  "languageserver": {
+    "python": {
+      "command": "python",
+      "args": [
+        "-mpyls"
+      ],
+      "filetypes": [
+        "python"
+      ]
+    },
+    "rust": {
+      "command": "rust-analyzer",
+      "rootPatterns": [
+        "Cargo.toml"
+      ],
+      "filetypes": [
+        "rust"
+      ]
+    },
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": [
+        "--lsp"
+      ],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": [
+        "haskell",
+        "lhaskell"
+      ]
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cc",
+        "cpp",
+        "c++",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
+    },
+    "java": {
+      "command": "jdtls",
+      "filetypes": [
+        "java"
+      ]
+    },
+    "latex": {
+      "command": "texlab",
+      "filetypes": [
+        "tex",
+        "bib",
+        "plaintex",
+        "context"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
+    }
+  }
+}
