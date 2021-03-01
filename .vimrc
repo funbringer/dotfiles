@@ -58,6 +58,13 @@ runtime config/helpers.vim
 runtime config/install-plug.vim
 let plugin_dir = $HOME . '/.vim/plugins/'
 call plug#begin(plugin_dir)
+  " Keymap
+  set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+  Plug 'lyokha/vim-xkbswitch'
+  if executable('xkb-switch')
+    let g:XkbSwitchEnabled = 1
+  endif
+
   " Themes
   Plug 'tomasiser/vim-code-dark'
   Plug 'tomasr/molokai'
@@ -177,7 +184,7 @@ let g:markdown_fenced_languages =
 " Color scheme
 colorscheme codedark
 if has("termguicolors")
-set termguicolors
+  set termguicolors
 endif
 
 " Quick run
