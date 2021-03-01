@@ -4,6 +4,9 @@
 !.gitignore
 
 # User config
-!alacritty
-!bashrc
-!nvim
+!/alacritty
+!/autostart
+!/bashrc
+!/fontconfig
+!/nvim
+!/systemd
