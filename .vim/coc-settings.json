@@ -86,6 +86,12 @@
       "ignoredRootPaths": [
         "~"
       ]
+    },
+    "dhall": {
+      "command": "dhall-lsp-server",
+      "filetypes": [
+        "dhall"
+      ]
     }
   }
 }

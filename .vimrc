@@ -42,7 +42,10 @@ nnoremap * *``
 set autoread
 set updatetime=250
 autocmd CursorHold * silent! checktime
-autocmd FileType gitcommit setlocal spell
+
+" Spelling
+autocmd FileType gitcommit,text
+  \ setlocal spell spelllang=ru_ru,en_us
 
 " Replace default leader key '\'
 let mapleader = ","
@@ -123,10 +126,13 @@ call plug#begin(plugin_dir)
   Plug 'arrufat/vala.vim'
   Plug 'cespare/vim-toml'
   Plug 'derekelkins/agda-vim'
+  Plug 'florentc/vim-tla'
   Plug 'idris-hackers/idris-vim'
   Plug 'lervag/vimtex'
   Plug 'mmarchini/bpftrace.vim'
+  Plug 'runoshun/vim-alloy'
   Plug 'rust-lang/rust.vim'
+  Plug 'vmchale/dhall-vim'
 
   Plug 'neovimhaskell/haskell-vim'
     let g:haskell_enable_pattern_synonyms = 1
