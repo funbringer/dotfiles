@@ -11,15 +11,15 @@ Plug 'antoinemadec/coc-fzf'
 " ***************************
 
 function! LspShowDocumentation()
-  call CocAction('doHover')
+  call CocActionAsync('doHover')
 endfunction
 
 function! LspGotoDefinition()
-  call CocAction('jumpDefinition')
+  call CocActionAsync('jumpDefinition')
 endfunction
 
 function! LspShowReferences()
-  call CocAction('jumpReferences')
+  call CocActionAsync('jumpReferences')
 endfunction
 
 function! LspRename()
