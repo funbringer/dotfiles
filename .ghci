@@ -3,6 +3,9 @@
 
 :set +m
 
+:set -XNoStarIsType
+import GHC.Types (Type)
+
 :set -XFlexibleContexts
 :set -XFlexibleInstances
 
