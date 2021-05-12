@@ -127,13 +127,30 @@ call plug#begin(plugin_dir)
   Plug 'arrufat/vala.vim'
   Plug 'cespare/vim-toml'
   Plug 'derekelkins/agda-vim'
-  Plug 'florentc/vim-tla'
   Plug 'idris-hackers/idris-vim'
   Plug 'lervag/vimtex'
   Plug 'mmarchini/bpftrace.vim'
   Plug 'runoshun/vim-alloy'
   Plug 'rust-lang/rust.vim'
   Plug 'vmchale/dhall-vim'
+
+  " Plug 'hwayne/tla.vim'
+  Plug 'florentc/vim-tla'
+    function! s:TlaSetup()
+      set conceallevel=2
+
+      function! s:Prefixed(default, rep)
+        if getline('.')[col('.')-2]=='\'
+          return "\<bs>".a:rep
+        else
+          return a:default
+        endif
+      endfunction
+
+      inoreab and <c-r>=<sid>Prefixed('and', '/\')<cr>
+      inoreab or  <c-r>=<sid>Prefixed('or',  '\/')<cr>
+    endfunction
+    autocmd FileType tla call s:TlaSetup()
 
   Plug 'neovimhaskell/haskell-vim'
     let g:haskell_enable_pattern_synonyms = 1
@@ -163,8 +180,9 @@ call plug#begin(plugin_dir)
 
   " Abbreviations
   Plug 'arthurxavierx/vim-unicoder'
-    let g:unicoder_command_abbreviations = 1
-    let g:unicoder_exclude_filetypes = ['tex', 'latex', 'plaintex']
+    let g:unicoder_command_abbreviations = 0
+    let g:unicoder_exclude_filetypes =
+      \ ['vim', 'tla', 'tex', 'latex', 'plaintex']
 
   " LSP
   runtime config/lsp.vim

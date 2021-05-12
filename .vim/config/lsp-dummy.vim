@@ -6,6 +6,10 @@ function! LspGotoDefinition()
   execute "normal \<C-]>"
 endfunction
 
+function! LspGotoTypeDefinition()
+  call Unimplemented(expand('<sfile>'))
+endfunction
+
 function! LspShowReferences()
   call Unimplemented(expand('<sfile>'))
 endfunction

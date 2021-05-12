@@ -18,6 +18,10 @@ function! LspGotoDefinition()
   call CocActionAsync('jumpDefinition')
 endfunction
 
+function! LspGotoTypeDefinition()
+  call CocActionAsync('jumpTypeDefinition')
+endfunction
+
 function! LspShowReferences()
   call CocActionAsync('jumpReferences')
 endfunction

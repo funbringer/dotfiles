@@ -59,6 +59,10 @@ function! LspGotoDefinition()
   call LanguageClient#textDocument_definition()
 endfunction
 
+function! LspGotoTypeDefinition()
+  call LanguageClient#textDocument_typeDefinition()
+endfunction
+
 function! LspShowReferences()
   call LanguageClient#textDocument_references()
 endfunction
