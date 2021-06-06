@@ -4,7 +4,6 @@
 :set +m
 
 :set -XNoStarIsType
-import GHC.Types (Type)
 
 :set -XFlexibleContexts
 :set -XFlexibleInstances
@@ -34,9 +33,12 @@ import GHC.Types (Type)
 -- PACKAGES --
 
 :set -package containers
+:set -package ghc-prim
 
 
 -- IMPORTS --
+
+import GHC.Types (Type)
 
 import qualified Data.Map as Map
 import Data.Map (Map)
