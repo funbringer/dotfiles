@@ -37,6 +37,7 @@
     },
     "ccls": {
       "command": "ccls",
+      "args": ["--log-file=/tmp/ccls.log"],
       "filetypes": [
         "c",
         "cc",
