@@ -33,7 +33,6 @@ if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 else
     color_prompt=
 fi
-
 if [ "$color_prompt" = yes ]; then
     # select proper color (root / ssh / user)
     if [ "$(id -u)" == "0" ]; then
@@ -97,25 +96,18 @@ if [ "$(id -u)" != "0" ]; then
     # favorite editor
     export EDITOR=nvim
 
-    # ssh-askpass
-    export SSH_ASKPASS=/usr/bin/ksshaskpass
-
     # Rust
     #export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src/"
-    export PATH=$PATH:"$HOME/.cargo/bin"
-
-    # Go
-    export GOBIN="$HOME/bin"
-    export PATH=$PATH:"$GOBIN"
+    export PATH="$HOME/.cargo/bin:$PATH"
 
     # Java
     export JAVA_HOME=/usr/lib/jvm/default
 
     # bcc tools
-    export PATH=/usr/share/bcc/tools:$PATH
+    export PATH="/usr/share/bcc/tools:$PATH"
 
     # local bin
-    export PATH=$PATH:"$HOME/.local/bin"
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Colored man output
