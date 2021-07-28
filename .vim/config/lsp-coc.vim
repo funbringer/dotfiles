@@ -34,6 +34,10 @@ function! LspCodeAction()
   execute 'CocAction'
 endfunction
 
+function! LspListSymbols()
+  execute 'CocFzfList symbols'
+endfunction
+
 function! LspDisable()
   " call Unimplemented(expand('<sfile>'))
 endfunction
