@@ -1,9 +1,9 @@
 {
   "languageserver": {
     "python": {
-      "command": "python",
-      "args": [
-        "-mpyls"
+      "command": "pyls",
+      "rootPatterns": [
+        "pyproject.toml"
       ],
       "filetypes": [
         "python"
