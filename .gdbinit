@@ -11,5 +11,9 @@ set history filename ~/.gdb_history
 # for disasm
 set disassembly-flavor intel
 
+# plugins
 py import duel
-#source /usr/share/pwndbg/gdbinit.py
+
+define init-pwndbg
+    source /usr/share/pwndbg/gdbinit.py
+end

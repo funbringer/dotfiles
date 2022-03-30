@@ -1,7 +1,10 @@
 {
+  "semanticTokens.filetypes": [
+    "*"
+  ],
   "languageserver": {
     "python": {
-      "command": "pyls",
+      "command": "pylsp",
       "rootPatterns": [
         "pyproject.toml"
       ],
@@ -16,7 +19,12 @@
       ],
       "filetypes": [
         "rust"
-      ]
+      ],
+      "settings": {
+        "rust-analyzer.diagnostics.enable": true,
+        "rust-analyzer.inlayHints.lifetimeElisionHints.enable": true,
+        "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": true
+      }
     },
     "haskell": {
       "command": "haskell-language-server-wrapper",
@@ -35,9 +43,11 @@
         "lhaskell"
       ]
     },
-    "ccls": {
+    "c": {
       "command": "ccls",
-      "args": ["--log-file=/tmp/ccls.log"],
+      "args": [
+        "--log-file=/tmp/ccls.log"
+      ],
       "filetypes": [
         "c",
         "cc",
@@ -96,7 +106,9 @@
     },
     "go": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "rootPatterns": [
+        "go.mod"
+      ],
       "filetypes": [
         "go"
       ]

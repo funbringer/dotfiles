@@ -23,16 +23,7 @@ HISTFILESIZE=4000
 shopt -s checkwinsize
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# check color support
-if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    color_prompt=yes
-else
-    color_prompt=
-fi
+color_prompt=yes;
 if [ "$color_prompt" = yes ]; then
     # select proper color (root / ssh / user)
     if [ "$(id -u)" == "0" ]; then
@@ -63,39 +54,38 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# Enable FZF if necessary
+if command -v fzf > /dev/null; then
+    if ! command -v fzf-share > /dev/null; then
+        function fzf-share() {
+            if [ -d /usr/share/fzf ]; then
+                echo /usr/share/fzf
+            elif [ -d /usr/share/doc/fzf/examples ]; then
+                echo /usr/share/doc/fzf/examples
+            fi
+        }
+    fi
+    FZF_FILES=(
+        # SEE: pacman -Qlq fzf | grep bash
+        "$(fzf-share)/completion.bash"
+        "$(fzf-share)/key-bindings.bash"
+    )
+    for f in "${FZF_FILES[@]}"; do
+        if [ -f "$f" ]; then
+            source "$f"
+        fi
+    done
+    # Fine tuning: use fd when possible
+    if command -v fd > /dev/null; then
+        export FZF_DEFAULT_COMMAND='fd --type f'
+    fi
+fi
 
-alias sr='stack ghci'
-
+# favorite editor
+export EDITOR=nvim
 
 # Optional things if not root
 if [ "$(id -u)" != "0" ]; then
-    # Enable FZF if necessary
-    if command -v fzf > /dev/null; then
-        FZF_FILES=(
-            # SEE: pacman -Qlq fzf | grep bash
-            /usr/share/fzf/completion.bash
-            /usr/share/fzf/key-bindings.bash
-        )
-        for f in "${FZF_FILES[@]}"; do
-            if [ -f "$f" ]; then
-                source "$f"
-            else
-                echo "WARNING: $f is missing, please update .bashrc"
-            fi
-        done
-        # Fine tuning: use fd when possible
-        if command -v fd > /dev/null; then
-            export FZF_DEFAULT_COMMAND='fd --type f'
-        fi
-    fi
-
-    # favorite editor
-    export EDITOR=nvim
-
     # Rust
     #export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src/"
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -110,6 +100,13 @@ if [ "$(id -u)" != "0" ]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Work items (not to be sync'ed)
+for f in "$HOME/.config/bashrc"/*; do
+    if [ -f "$f" ]; then
+        source "$f"
+    fi
+done
+
 # Colored man output
 man() {
     env                                             \
@@ -123,9 +120,9 @@ man() {
             man "$@"
 }
 
-# Work items (not to be sync'ed)
-for f in "$HOME/.config/bashrc"/*; do
-    if [ -f "$f" ]; then
-        source "$f"
-    fi
-done
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias  l='ls -CF'
+
+alias sr='stack ghci'

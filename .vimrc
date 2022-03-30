@@ -15,7 +15,7 @@ set nofoldenable
 
 " Visible features
 set cursorline
-set guifont=Source\ Code\ Pro:h28
+set guifont=Source\ Code\ Pro:h32
 set linebreak
 set list
 set listchars=tab:→\ ,nbsp:·,trail:·

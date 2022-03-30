@@ -14,7 +14,7 @@ call plug#begin(plugin_dir)
     Plug 'tomasr/molokai'
 
     " Look & feel (interface)
-    Plug 'RRethy/vim-illuminate'
+    " Plug 'RRethy/vim-illuminate' " highlight word under cursor
     Plug 'camspiers/lens.vim'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'ryanoasis/vim-devicons'
@@ -61,6 +61,14 @@ call plug#begin(plugin_dir)
       let g:airline_powerline_fonts = 1
       let g:airline#extensions#hunks#enabled = 0
       let g:airline#extensions#whitespace#checks = ['trailing']
+
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    " Copilot
+    Plug 'github/copilot.vim'
+      " let g:copilot_filetypes = {
+      "   \ '*': v:true,
+      "   \ }
 
     " Language support
     Plug 'ahf/cocci-syntax'

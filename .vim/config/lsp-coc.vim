@@ -41,3 +41,5 @@ endfunction
 function! LspDisable()
   " call Unimplemented(expand('<sfile>'))
 endfunction
+
+let g:coc_default_semantic_highlight_groups = 1
