@@ -8,18 +8,16 @@ call plug#begin(plugin_dir)
   endif
 
   if !exists('g:vscode') " for vscode + nvim
-
     " Themes
     Plug 'tomasiser/vim-code-dark'
     Plug 'tomasr/molokai'
 
     " Look & feel (interface)
-    " Plug 'RRethy/vim-illuminate' " highlight word under cursor
     Plug 'camspiers/lens.vim'
     Plug 'ntpeters/vim-better-whitespace'
     Plug 'ryanoasis/vim-devicons'
 
-    " FZF
+    " Fuzzy Finder Menu
     Plug 'zackhsi/fzf-tags'
     Plug 'junegunn/fzf.vim'
       let g:fzf_history_dir = '~/.fzf_history'
@@ -39,13 +37,12 @@ call plug#begin(plugin_dir)
         \ 'spinner': ['fg', 'Label'],
         \ 'header':  ['fg', 'Comment']
         \ }
-      nnoremap <silent> fzf  :FZF<CR>
-      nnoremap <silent> fzt  :Tags<CR>
-      nnoremap <silent> fzb  :BTags<CR>
-      nnoremap <silent> fzc  :Commits<CR>
-      nnoremap <silent> ;    :Buffers<CR>
-
-      nmap <C-]> <Plug>(fzf_tags)
+      nnoremap <silent> fzf   :FZF<CR>
+      nnoremap <silent> fzt   :Tags<CR>
+      nnoremap <silent> fzb   :BTags<CR>
+      nnoremap <silent> fzc   :Commits<CR>
+      nnoremap <silent> ;     :Buffers<CR>
+      nmap              <C-]> <Plug>(fzf_tags)
 
     Plug 'dstein64/vim-startuptime'
 
@@ -62,6 +59,7 @@ call plug#begin(plugin_dir)
       let g:airline#extensions#hunks#enabled = 0
       let g:airline#extensions#whitespace#checks = ['trailing']
 
+    " Treesitter for syntax highlighting
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Copilot
@@ -72,8 +70,6 @@ call plug#begin(plugin_dir)
 
     " Language support
     Plug 'ahf/cocci-syntax'
-    Plug 'arrufat/vala.vim'
-    Plug 'cespare/vim-toml'
     Plug 'derekelkins/agda-vim'
     Plug 'idris-hackers/idris-vim'
     Plug 'lervag/vimtex'
@@ -82,8 +78,8 @@ call plug#begin(plugin_dir)
     Plug 'rust-lang/rust.vim'
     Plug 'vmchale/dhall-vim'
 
-    " Plug 'hwayne/tla.vim'
     Plug 'florentc/vim-tla'
+      " TODO: do we still need this?
       function! s:TlaSetup()
         set conceallevel=2
 
@@ -118,13 +114,8 @@ call plug#begin(plugin_dir)
     " Preview
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
-    " Formatting
-    Plug 'godlygeek/tabular'
+    " Formatting (vim only)
     Plug 'jiangmiao/auto-pairs'
-    Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-endwise'
-    Plug 'tpope/vim-sleuth'
-    Plug 'tpope/vim-surround'
 
     " Abbreviations
     Plug 'arthurxavierx/vim-unicoder'
@@ -132,19 +123,16 @@ call plug#begin(plugin_dir)
       let g:unicoder_exclude_filetypes =
         \ ['vim', 'tla', 'tex', 'latex', 'plaintex']
 
-    " LSP
+    " Language Server Protocol
     runtime config/lsp.vim
-
-  else " g:vscode
-
-    " Formatting
-    Plug 'godlygeek/tabular'
-    Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-endwise'
-    Plug 'tpope/vim-sleuth'
-    Plug 'tpope/vim-surround'
-
   endif " g:vscode
+
+  " Formatting (common)
+  Plug 'godlygeek/tabular'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-sleuth'
+  Plug 'tpope/vim-surround'
 call plug#end()
 
 

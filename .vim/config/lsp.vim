@@ -1,9 +1,9 @@
 " Provide default functions
-runtime config/lsp-dummy.vim
+runtime config/lsp/default.vim
 
 " Choose LSP engine
-" runtime config/lsp-lcnvim.vim
-runtime config/lsp-coc.vim
+" runtime config/lsp/lcnvim.vim
+runtime config/lsp/coc.vim
 
 function __LspShowDocumentation()
   " TODO: take a look at https://github.com/neoclide/coc.nvim/issues/1445
