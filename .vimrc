@@ -69,7 +69,7 @@ runtime config/quickrun.vim
 
 " Plugins
 runtime config/install-plug.vim
-runtime config/load-plugins.vim
+runtime config/plugins.vim
 
 " Color scheme
 if !exists('g:vscode')
