@@ -70,7 +70,6 @@ runtime config/quickrun.vim
 " Plugins
 runtime config/install-plug.vim
 runtime config/plugins.vim
-runtime config/treesitter.vim
 
 " Color scheme
 if !exists('g:vscode')
