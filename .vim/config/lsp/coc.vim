@@ -31,7 +31,7 @@ function! LspRename()
 endfunction
 
 function! LspCodeAction()
-  execute 'CocAction'
+  execute 'CocFzfList actions'
 endfunction
 
 function! LspListSymbols()
