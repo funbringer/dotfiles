@@ -8,6 +8,8 @@ set history save on
 set history size 5000
 set history filename ~/.gdb_history
 
+set debuginfod enabled on
+
 # for disasm
 set disassembly-flavor intel
 
