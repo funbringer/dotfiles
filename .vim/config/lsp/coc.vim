@@ -11,7 +11,11 @@ Plug 'antoinemadec/coc-fzf'
 " ***************************
 
 function! LspShowDocumentation()
-  call CocActionAsync('doHover')
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
 
 function! LspGotoDefinition()

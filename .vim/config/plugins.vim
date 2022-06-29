@@ -63,7 +63,7 @@ call plug#begin(plugin_dir)
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Copilot
-    Plug 'github/copilot.vim'
+    " Plug 'github/copilot.vim'
       " let g:copilot_filetypes = {
       "   \ '*': v:true,
       "   \ }
@@ -148,6 +148,7 @@ lua << EOF
     -- A list of parser names, or "all"
     ensure_installed = {
       "go",
+      "haskell",
       "nix",
       "rust",
       "vala",

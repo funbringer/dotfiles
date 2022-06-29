@@ -1,5 +1,5 @@
 function! LspShowDocumentation()
-  throw 'reuse code'
+  call feedkeys('K', 'in')
 endfunction
 
 function! LspGotoDefinition()
