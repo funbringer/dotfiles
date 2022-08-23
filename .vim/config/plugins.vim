@@ -21,22 +21,6 @@ call plug#begin(plugin_dir)
     Plug 'zackhsi/fzf-tags'
     Plug 'junegunn/fzf.vim'
       let g:fzf_history_dir = '~/.fzf_history'
-      let g:fzf_colors =
-        \ {
-        \ 'fg':      ['fg', 'Normal'],
-        \ 'bg':      ['bg', 'Normal'],
-        \ 'hl':      ['fg', 'Comment'],
-        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-        \ 'hl+':     ['fg', 'Statement'],
-        \ 'info':    ['fg', 'PreProc'],
-        \ 'border':  ['fg', 'Ignore'],
-        \ 'prompt':  ['fg', 'Conditional'],
-        \ 'pointer': ['fg', 'Exception'],
-        \ 'marker':  ['fg', 'Keyword'],
-        \ 'spinner': ['fg', 'Label'],
-        \ 'header':  ['fg', 'Comment']
-        \ }
       nnoremap <silent> fzf   :FZF<CR>
       nnoremap <silent> fzt   :Tags<CR>
       nnoremap <silent> fzb   :BTags<CR>
@@ -62,15 +46,8 @@ call plug#begin(plugin_dir)
     " Treesitter for syntax highlighting
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-    " Copilot
-    " Plug 'github/copilot.vim'
-      " let g:copilot_filetypes = {
-      "   \ '*': v:true,
-      "   \ }
-
     " Language support
     Plug 'ahf/cocci-syntax'
-    Plug 'derekelkins/agda-vim'
     Plug 'idris-hackers/idris-vim'
     Plug 'lervag/vimtex'
     Plug 'mmarchini/bpftrace.vim'
