@@ -38,7 +38,7 @@
               "enable": false
             },
             "lifetimeElisionHints": {
-              "enable": true
+              "enable": false
             }
           },
           "rustc": {
