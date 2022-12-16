@@ -128,8 +128,10 @@ lua << EOF
       "go",
       "haskell",
       "nix",
+      "python",
       "rust",
       "vala",
+      "zig",
     },
 
     highlight = {
