@@ -133,6 +133,12 @@
       "filetypes": [
         "go"
       ]
+    },
+    "lua": {
+      "command": "lua-language-server",
+      "filetypes": [
+        "lua"
+      ]
     }
   }
 }

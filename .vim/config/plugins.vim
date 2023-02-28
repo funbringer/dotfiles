@@ -127,6 +127,7 @@ lua << EOF
       "agda",
       "go",
       "haskell",
+      "lua",
       "nix",
       "python",
       "rust",
