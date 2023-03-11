@@ -107,18 +107,6 @@
         "java"
       ]
     },
-    "latex": {
-      "command": "texlab",
-      "filetypes": [
-        "tex",
-        "bib",
-        "plaintex",
-        "context"
-      ],
-      "ignoredRootPaths": [
-        "~"
-      ]
-    },
     "dhall": {
       "command": "dhall-lsp-server",
       "filetypes": [
@@ -139,6 +127,22 @@
       "filetypes": [
         "lua"
       ]
+    },
+    "latex": {
+      "command": "texlab",
+      "filetypes": [
+        "tex",
+        "bib",
+        "plaintex",
+        "context"
+      ],
+      "settings": {
+        "latex": {
+          "build": {
+            "executable": "tectonic"
+          }
+        }
+      }
     }
   }
 }

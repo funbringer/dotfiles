@@ -49,11 +49,17 @@ call plug#begin(plugin_dir)
     " Language support
     Plug 'ahf/cocci-syntax'
     Plug 'idris-hackers/idris-vim'
-    Plug 'lervag/vimtex'
     Plug 'mmarchini/bpftrace.vim'
     Plug 'runoshun/vim-alloy'
     Plug 'rust-lang/rust.vim'
     Plug 'vmchale/dhall-vim'
+
+    Plug 'lervag/vimtex'
+      let g:vimtex_compiler_method = 'tectonic'
+      function! s:TexSetup()
+        set conceallevel=2
+      endfunction
+      autocmd FileType tex call s:TexSetup()
 
     Plug 'florentc/vim-tla'
       " TODO: do we still need this?
