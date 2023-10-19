@@ -53,12 +53,18 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:markdown_fenced_languages =
   \ [
   \ 'bash=sh',
+  \ 'bpftrace',
   \ 'c',
+  \ 'cmake',
   \ 'cpp',
   \ 'haskell',
+  \ 'idris',
   \ 'java',
+  \ 'lua',
+  \ 'meson',
   \ 'python',
   \ 'rust',
+  \ 'zig',
   \ ]
 
 " Add custom helper functions

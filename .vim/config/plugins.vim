@@ -93,6 +93,7 @@ call plug#begin(plugin_dir)
     Plug 'airblade/vim-gitgutter'
     Plug 'rhysd/git-messenger.vim'
     Plug 'tpope/vim-fugitive'
+    Plug 'ruanyl/vim-gh-line'
 
     " Preview
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
