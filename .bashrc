@@ -88,13 +88,15 @@ export EDITOR=nvim
 if [ "$(id -u)" != "0" ]; then
     # Rust
     #export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src/"
-    export PATH="$HOME/.cargo/bin:$PATH"
+    export PATH="$PATH:/usr/lib/rustup/bin"
+    export PATH="$PATH:$HOME/.cargo/bin"
 
     # Java
     export JAVA_HOME=/usr/lib/jvm/default
 
     # bcc tools
     export PATH="/usr/share/bcc/tools:$PATH"
+    export PATH="/usr/share/bpftrace/tools:$PATH"
 
     # local bin
     export PATH="$HOME/.local/bin:$PATH"
