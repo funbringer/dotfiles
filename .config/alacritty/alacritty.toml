@@ -1,0 +1,34 @@
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "Source Code Pro"
+
+[font.italic]
+family = "Source Code Pro"
+
+[font.normal]
+family = "Source Code Pro"
+
+[[keyboard.bindings]]
+action = "None"
+key = "Up"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+action = "None"
+key = "Down"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+action = "None"
+key = "Left"
+mods = "Control|Alt"
+
+[[keyboard.bindings]]
+action = "None"
+key = "Right"
+mods = "Control|Alt"
