@@ -9,6 +9,7 @@ call plug#begin(plugin_dir)
 
   if !exists('g:vscode') " for vscode + nvim
     " Themes
+    Plug 'NLKNguyen/papercolor-theme'
     Plug 'tomasiser/vim-code-dark'
     Plug 'tomasr/molokai'
 
