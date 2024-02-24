@@ -86,20 +86,23 @@ export EDITOR=nvim
 
 # Optional things if not root
 if [ "$(id -u)" != "0" ]; then
+    # local bin
+    export PATH="$HOME/.local/bin:$PATH"
+
+    # Java
+    export JAVA_HOME=/usr/lib/jvm/default
+
     # Rust
     #export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src/"
     export PATH="$PATH:/usr/lib/rustup/bin"
     export PATH="$PATH:$HOME/.cargo/bin"
 
-    # Java
-    export JAVA_HOME=/usr/lib/jvm/default
-
     # bcc tools
     export PATH="/usr/share/bcc/tools:$PATH"
     export PATH="/usr/share/bpftrace/tools:$PATH"
 
-    # local bin
-    export PATH="$HOME/.local/bin:$PATH"
+    # lean4
+    export PATH="$PATH:$HOME/.elan/bin"
 fi
 
 # Work items (not to be sync'ed)
@@ -108,19 +111,6 @@ for f in "$HOME/.config/bashrc"/*; do
         source "$f"
     fi
 done
-
-# Colored man output
-man() {
-    env                                             \
-        LESS_TERMCAP_mb="$(printf "\e[1;31m")"      \
-        LESS_TERMCAP_md="$(printf "\e[1;31m")"      \
-        LESS_TERMCAP_me="$(printf "\e[0m")"         \
-        LESS_TERMCAP_se="$(printf "\e[0m")"         \
-        LESS_TERMCAP_so="$(printf "\e[1;44;33m")"   \
-        LESS_TERMCAP_ue="$(printf "\e[0m")"         \
-        LESS_TERMCAP_us="$(printf "\e[1;32m")"      \
-            man "$@"
-}
 
 # some more ls aliases
 alias ll='ls -alF'
