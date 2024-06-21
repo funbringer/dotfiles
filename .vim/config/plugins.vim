@@ -51,6 +51,7 @@ call plug#begin(plugin_dir)
     Plug 'ahf/cocci-syntax'
     Plug 'idris-hackers/idris-vim'
     Plug 'mmarchini/bpftrace.vim'
+    Plug 'pest-parser/pest.vim'
     Plug 'runoshun/vim-alloy'
     Plug 'rust-lang/rust.vim'
     Plug 'vmchale/dhall-vim'
