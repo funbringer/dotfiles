@@ -40,9 +40,6 @@
             "lifetimeElisionHints": {
               "enable": false
             }
-          },
-          "rustc": {
-            "source": "discover"
           }
         }
       }
