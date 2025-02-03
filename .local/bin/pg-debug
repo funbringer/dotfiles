@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+# start a gdb session in yakuake
+
+if [ $# -eq 0 ]; then
+	echo stdin mode
+
+	while read line
+	do
+		# Extended display off
+		if [[ $line =~ ^\s*([0-9]+) ]]; then
+			PID=${BASH_REMATCH[1]}
+			break
+		fi
+		# Extended display on
+		if [[ $line =~ ^pg_backend_pid.*\s([0-9]+) ]]; then
+			PID=${BASH_REMATCH[1]}
+			break
+		fi
+	done
+else
+	echo arg mode
+	PID=$1
+fi
+
+echo $PID
+zap sudo -E gdb -p "$PID"

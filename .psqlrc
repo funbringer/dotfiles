@@ -1,6 +1,6 @@
 /* helpful ad hoc commands for debug purposes */
 \set pid 'SELECT pg_backend_pid();'
-\set gdb 'SELECT pg_backend_pid() \\g |pg_debug'
+\set gdb 'SELECT pg_backend_pid() \\g (format=unaligned tuples_only=on) |pg-debug'
 
 /* the query for building the prompt */
 select (

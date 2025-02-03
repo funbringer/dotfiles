@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-sudo ip route add "$(tor-resolve "$1")" via 10.0.15.2
