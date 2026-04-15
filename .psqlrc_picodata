@@ -1,0 +1,7 @@
+-- vim: ft=sql
+
+select version() like 'picodata%' as is_picodata
+\gset
+
+\if :is_picodata
+\endif

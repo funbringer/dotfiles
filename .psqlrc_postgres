@@ -1,0 +1,47 @@
+-- vim: ft=sql
+
+select version() like 'PostgreSQL%' as is_postgres
+\gset
+
+\if :is_postgres
+
+/* helpful ad hoc commands for debug purposes */
+\set pid 'SELECT pg_backend_pid();'
+\set gdb 'SELECT pg_backend_pid() \\g (format=unaligned tuples_only=on) |pg-debug'
+
+/* the query for building the prompt */
+select (
+    with
+    shown_settings(id, name, fmt, hidden_value) as (
+        values
+            /* put your lines here */
+            (1, 'primary_or_replica', '%s', NULL),
+            (2, 'neon.pageserver_connstring', '@neon', NULL),
+            (3, 'port', 'port=%s', 5432)
+    ),
+    settings(name, value) as (
+        /* global settings */
+        select name, setting from pg_catalog.pg_settings
+        /* put your custom setting providers here */
+        union select
+            'primary_or_replica',
+            case
+                when pg_catalog.pg_is_in_recovery() then '@R'
+                else null /* don't show anything on primary */
+            end
+    ),
+    config(id, kvp) as (
+        select
+            shown_settings.id,
+            pg_catalog.format(shown_settings.fmt, settings.value)
+        from settings join shown_settings using(name)
+        where settings.value is distinct from shown_settings.hidden_value :: text
+    )
+    select '[' || string_agg(kvp, ', ' order by id) || ']' from config
+) as prompt_hints
+\gset
+
+/* the prompt itself */
+\set PROMPT1 '%/%:prompt_hints:=# '
+
+\endif
