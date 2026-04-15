@@ -4,8 +4,8 @@
 !.gitignore
 
 # Various dirs
-!.config/
-!.ssh/
+!/.config/
+!/.ssh/
 
 # VIM
 !/.config/nvim
@@ -20,3 +20,6 @@
 !/.ghci
 !/.psqlrc
 !/.tmux.conf
+
+# Custom packages
+!/.local/pkgbuild/**/PKGBUILD
