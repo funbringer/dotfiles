@@ -128,25 +128,23 @@ if !exists('g:vscode')
     let g:airline_section_z =
       \ airline#section#create(['linenr', 'maxlinenr', ':%3c'])
   endif
-
-lua << EOF
-  require 'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all"
-    ensure_installed = {
-      "agda",
-      "go",
-      "haskell",
-      "lua",
-      "nix",
-      "python",
-      "rust",
-      "vala",
-      "zig",
-    },
-
-    highlight = {
-      enable = true,
-    }
-  }
-EOF
+"lua << EOF
+"  require 'nvim-treesitter.configs'.setup {
+"    -- A list of parser names, or "all"
+"    ensure_installed = {
+"      "agda",
+"      "go",
+"      "haskell",
+"      "lua",
+"      "nix",
+"      "python",
+"      "rust",
+"      "vala",
+"      "zig",
+"    },
+"    highlight = {
+"      enable = true,
+"    }
+"  }
+"EOF
 endif

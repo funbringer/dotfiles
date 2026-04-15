@@ -15,7 +15,6 @@ set nofoldenable
 
 " Visible features
 set cursorline
-set guifont=Source\ Code\ Pro:h32
 set linebreak
 set list
 set listchars=tab:→\ ,nbsp:·,trail:·
@@ -23,6 +22,7 @@ set mouse=a
 set noshowmode
 set number
 set signcolumn=yes
+set diffopt=internal,filler,closeoff,linematch:60
 syntax enable
 
 " Clipboard
@@ -59,7 +59,6 @@ let g:markdown_fenced_languages =
   \ 'cpp',
   \ 'haskell',
   \ 'idris',
-  \ 'java',
   \ 'lua',
   \ 'meson',
   \ 'python',
