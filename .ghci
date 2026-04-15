@@ -3,6 +3,8 @@
 
 :set +m
 
+:set -fprint-explicit-foralls
+
 :set -XNoStarIsType
 
 :set -XFlexibleContexts
