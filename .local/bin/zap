@@ -4,16 +4,27 @@ import os
 import sys
 
 
+def exec(args):
+    os.execlp(args[0], *args)
+
+
 args = sys.argv[1:]
 
 if os.environ.get('TILIX_ID'):
-    os.execlp('tilix', 'tilix', '-a', 'app-new-session', '-e', *args)
+    cmd = ['tilix', '-a', 'app-new-session', '-e', *args]
+    exec(cmd)
 
 if os.environ.get('GNOME_TERMINAL_SERVICE'):
-    os.execlp('gnome-terminal', 'gnome-terminal', '--tab', '-e', *args)
+    cmd = ['gnome-terminal', '--tab', '-e', *args]
+    exec(cmd)
 
 if os.environ.get('KONSOLE_VERSION'):
-    os.execlp('konsole', 'konsole', '--new-tab', '-e', *args)
+    cmd = ['konsole', '--new-tab', '-e', *args]
+    exec(cmd)
+
+if os.environ.get('TERM_PROGRAM') == 'guake':
+    cmd = ['guake', '--execute-command', ' '.join(args)]
+    exec(cmd)
 
 print(f'failed to spawn {args}', file=sys.stderr)
-os.exit(1)
+exit(1)
