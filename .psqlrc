@@ -10,6 +10,7 @@
 \set less '\\setenv PAGER less'
 \set pspg '\\setenv PAGER \'pspg -s 0\''
 :pspg
-\unset QUIET
 
 \timing on
+
+\unset QUIET

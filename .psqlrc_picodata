@@ -4,4 +4,10 @@ select version() like 'picodata%' as is_picodata
 \gset
 
 \if :is_picodata
+
+select version() as picodata_version
+\gset
+\echo :picodata_version
+\echo
+
 \endif
