@@ -10,21 +10,32 @@ def exec(args):
 
 args = sys.argv[1:]
 
+
+# tilix
 if os.environ.get('TILIX_ID'):
     cmd = ['tilix', '-a', 'app-new-session', '-e', *args]
     exec(cmd)
 
+# gnome-terminal
 if os.environ.get('GNOME_TERMINAL_SERVICE'):
     cmd = ['gnome-terminal', '--tab', '-e', *args]
     exec(cmd)
 
+# konsole
 if os.environ.get('KONSOLE_VERSION'):
     cmd = ['konsole', '--new-tab', '-e', *args]
     exec(cmd)
 
-if os.environ.get('TERM_PROGRAM') == 'guake':
-    cmd = ['guake', '--execute-command', ' '.join(args)]
-    exec(cmd)
+match os.environ.get('TERM_PROGRAM'):
+    # guake
+    case 'guake':
+        cmd = ['guake', '--execute-command', ' '.join(args)]
+        exec(cmd)
+    # gnome-console
+    case 'kgx':
+        cmd = ['kgx', '--tab', '-e', *args]
+        exec(cmd)
+
 
 print(f'failed to spawn {args}', file=sys.stderr)
 exit(1)
