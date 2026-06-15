@@ -1,8 +1,8 @@
 -- vim: ft=sql
 
 \set QUIET on
-\include .psqlrc_postgres
-\include .psqlrc_picodata
+\include ~/.psqlrc_postgres
+\include ~/.psqlrc_picodata
 
 \pset linestyle unicode
 \pset border 2
