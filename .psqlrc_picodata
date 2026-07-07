@@ -1,13 +1,87 @@
 -- vim: ft=sql
 
-select version() like 'picodata%' as is_picodata
+select (
+       version() like 'picodata%'
+    or version() like '25%-%-g%'
+    or version() like '26.1%-%-g%'
+) as is_picodata
 \gset
 
 \if :is_picodata
 
-select version() as picodata_version
+select 'Version: ' || version() as picodata_version
 \gset
 \echo :picodata_version
 \echo
+
+select '
+    select
+        id, name, type, auth
+    from _pico_user
+' as users
+\gset
+
+select '
+    select
+        pt.id as id,
+        pt.name as name,
+        pt.engine as engine,
+        case distribution[''ShardedImplicitly''][1] is not null
+            when true then ''sharded''
+            else ''global''
+            end as distribution,
+        pu.name as owner
+    from _pico_table as pt
+    join _pico_user as pu on pt.owner = pu.id
+' as tables_all
+\gset
+
+select '
+    select * from (:tables_all) as t
+    where not (t.name like ''_pico%'')
+' as tables
+\gset
+
+select '
+    select
+        pi.name as index_name,
+        pt.name as table_name,
+        pi.type,
+        pi.opts[1][''unique'']::bool as unique,
+        parts
+    from _pico_index as pi
+    join _pico_table as pt on pi.table_id = pt.id
+' as indexes_all
+\gset
+
+select '
+    select * from (:indexes_all) as i
+    where not (i.index_name like ''_pico%'')
+' as indexes
+\gset
+
+select '
+    select
+        raft_id,
+        pi.name as instance_name,
+        pi.uuid as instance_uuid,
+        pi.replicaset_name,
+        pi.picodata_version,
+        lower(pi.current_state[1]::text) as current_state,
+        pi.target_state_change_time
+    from _pico_instance as pi
+' as instances
+\gset
+
+select '
+    select
+        pi.name as instance_name,
+        pi.uuid as instance_uuid,
+        ppa.address,
+        ppa.connection_type as type
+    from _pico_instance as pi
+    join _pico_peer_address ppa on pi.raft_id = ppa.raft_id
+' as listen
+\gset
 
 \endif
