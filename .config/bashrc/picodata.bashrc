@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export PATH="$PATH:$HOME/.local/picodata"
+
 export PATH="$PATH:$HOME/projects/picodata/picodata/target/debug"
 
 export PATH="$PATH:$HOME/projects/picodata/tarantool/build/src"
