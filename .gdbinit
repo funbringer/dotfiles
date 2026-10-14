@@ -15,7 +15,3 @@ set disassembly-flavor intel
 
 # plugins
 py import duel
-
-define init-pwndbg
-    source /usr/share/pwndbg/gdbinit.py
-end
