@@ -1,0 +1,6 @@
+$include /etc/inputrc
+
+$if psql
+# Ctrl-R: fuzzy-search history with fzf (see :fzf in ~/.psqlrc)
+"\C-r": "\C-a\C-k :fzf\C-m"
+$endif
