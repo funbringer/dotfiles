@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""Pick an entry from a readline history file with fzf and print it.
+
+The file can have one of two formats:
+- one entry per line, with \\001 in place of a newline (psql);
+- a "#<timestamp>" line before each entry, and an entry can have more than
+  one line (readline with history_write_timestamps, Tarantool).
+
+The newest entries come first, without duplicates. Entries that start with
+a space or with ":" are not shown (psql HISTCONTROL=ignorespace and the
+:fzf command itself).
+"""
+
+import argparse
+import re
+import subprocess
+import sys
+
+TIMESTAMP = re.compile(r'#\d+')
+FZF = ['fzf', '--read0', '--print0', '--scheme=history', '--height=50%',
+       '--reverse', '--gap', '--highlight-line']
+
+
+def read_entries(path):
+    """Return the entries of the history file, the oldest first."""
+    with open(path, encoding='utf-8', errors='surrogateescape') as f:
+        lines = f.read().splitlines()
+    entries = []
+    # Lines before the first timestamp are one entry each, as readline has
+    # it. After a timestamp, all the lines up to the next one are an entry.
+    current = None
+    for line in lines:
+        if TIMESTAMP.fullmatch(line):
+            if current is not None:
+                entries.append('\n'.join(current))
+            current = []
+        elif current is None:
+            entries.append(line)
+        else:
+            current.append(line)
+    if current:
+        entries.append('\n'.join(current))
+    return [e.replace('\001', '\n') for e in entries]
+
+
+def candidates(entries):
+    """Return the entries to show, the newest first, without duplicates."""
+    seen = set()
+    for entry in reversed(entries):
+        if entry and not entry.startswith((' ', ':')) and entry not in seen:
+            seen.add(entry)
+            yield entry
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument('--no-semicolon', action='store_true',
+                        help='remove the ";" at the end of the picked entry, '
+                             'so that psql does not run it at once')
+    parser.add_argument('file', help='the history file')
+    parser.add_argument('query', nargs='*', help='the initial query')
+    args = parser.parse_args()
+
+    try:
+        entries = read_entries(args.file)
+    except FileNotFoundError:
+        return 0
+    data = ''.join(e + '\0' for e in candidates(entries))
+    # fzf shows its interface on /dev/tty, so stdin and stdout are free.
+    proc = subprocess.run(FZF + ['--query', ' '.join(args.query)],
+                          input=data.encode('utf-8', 'surrogateescape'),
+                          stdout=subprocess.PIPE)
+    picked = proc.stdout.decode('utf-8', 'surrogateescape').rstrip('\0')
+    if args.no_semicolon:
+        picked = re.sub(r'\s*;\s*$', '', picked)
+    sys.stdout.write(picked)
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

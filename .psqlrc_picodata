@@ -48,7 +48,7 @@ select '
         pt.name as table_name,
         pi.type,
         pi.opts[1][''unique'']::bool as unique,
-        parts
+        pi.parts
     from _pico_index as pi
     join _pico_table as pt on pi.table_id = pt.id
 ' as indexes_all
@@ -62,7 +62,7 @@ select '
 
 select '
     select
-        raft_id,
+        pi.raft_id,
         pi.name as instance_name,
         pi.uuid as instance_uuid,
         pi.replicaset_name,

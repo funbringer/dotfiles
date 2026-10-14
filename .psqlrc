@@ -15,6 +15,6 @@
 
 -- fzf history search, bound to Ctrl-R in ~/.inputrc
 \set HISTCONTROL ignorespace
-\set fzf '\\set _fzf_q `~/.local/bin/psql-fzf-history` \\\\ :_fzf_q \\p'
+\set fzf '\\set _fzf_q `~/.local/bin/fzf-history --no-semicolon ${PSQL_HISTORY:-$HOME/.psql_history}` \\\\ :_fzf_q \\p'
 
 \unset QUIET
